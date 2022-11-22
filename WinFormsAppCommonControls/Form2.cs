@@ -54,11 +54,15 @@ namespace WinFormsAppCommonControls
                 return;
             }
 
-            lstMusteriler.Items.RemoveAt(index);
-            lblAdet.Text = lstMusteriler.Items.Count.ToString() + " adet kişi vardır.";
-            lblCount.Text = lstMusteriler.Items.Count.ToString() + " adet kişi vardır.";
-            lblLastProcess.Text = $"Kişi silindi.({DateTime.Now})";
+            DialogResult result = MessageBox.Show("İlgili kaydı silmek istediğinize emin misiniz?", "Silme Onay", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
 
+            if (result == DialogResult.Yes)
+            {
+                lstMusteriler.Items.RemoveAt(index);
+                lblAdet.Text = lstMusteriler.Items.Count.ToString() + " adet kişi vardır.";
+                lblCount.Text = lstMusteriler.Items.Count.ToString() + " adet kişi vardır.";
+                lblLastProcess.Text = $"Kişi silindi.({DateTime.Now})";
+            }
         }
 
         private void lstMusteriler_SelectedIndexChanged(object sender, EventArgs e)
